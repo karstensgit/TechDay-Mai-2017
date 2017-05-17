@@ -9,6 +9,12 @@ namespace SupermarketStuff.Implementation.Default
     {
         private Dictionary<IItem, double> ItemsWithSupplyPrice;
 
+        public DefaultSupplier()
+        {
+            this.ItemsWithSupplyPrice = new Dictionary<IItem, double>();
+            Marketplace.GetInstance().RegisterSupplier(this);
+        }
+
         public void AddItem(IItem item, double supplyPrice)
         {
             ItemsWithSupplyPrice.Add(item, supplyPrice);
@@ -29,7 +35,7 @@ namespace SupermarketStuff.Implementation.Default
 
         public bool Sells(IItem item)
         {
-            throw new NotImplementedException();
+            return ItemsWithSupplyPrice.ContainsKey(item);
         }
     }
 }
