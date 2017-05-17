@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SupermarketStuff.Interfaces
+﻿namespace SupermarketStuff.Interfaces
 {
-    interface ICustomer
+    internal interface ICustomer
     {
-        bool buyCart();
-        void withdrawMoney(double amount);
+        bool BuyCart();
+        void WithdrawMoney(double amount);
     }
 }
