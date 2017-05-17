@@ -6,7 +6,10 @@ namespace SupermarketStuff.Interfaces
 {
     interface ICustomer
     {
-        bool buyCart();
-        void withdrawMoney(double amount);
+        IShoppingCart GetCart();
+        void SetCart(IShoppingCart newCart);
+        bool BuyCart();
+        void WithdrawMoney(int amount);
+        double GetMoneyInPocket();
     }
 }

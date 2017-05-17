@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Implementation\Default\" />
     <Folder Include="Implementation\Own\" />
   </ItemGroup>
 
