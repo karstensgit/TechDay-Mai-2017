@@ -8,6 +8,12 @@ namespace SupermarketStuff.Implementation.Default
         private double moneyInPocket;
         private IShoppingCart shoppingCart;
 
+        DefaultCustomer()
+        {
+            this.moneyInPocket = 250;
+            this.shoppingCart = new DefaulShoppingCart();
+        }
+
         public IShoppingCart GetCart()
         {
             return shoppingCart;
@@ -29,6 +35,7 @@ namespace SupermarketStuff.Implementation.Default
             {
                 Console.Write("Invalid amount!");
             }
+            this.moneyInPocket += amount;
         }
 
         public double GetMoneyInPocket()
