@@ -11,7 +11,7 @@ namespace SupermarketStuff.Implementation.Default
         DefaultCustomer()
         {
             this.moneyInPocket = 250;
-            this.shoppingCart = new DefaulShoppingCart();
+            this.shoppingCart = new DefaultShoppingCart();
         }
 
         public IShoppingCart GetCart()
@@ -22,11 +22,6 @@ namespace SupermarketStuff.Implementation.Default
         public void SetCart(IShoppingCart newCart)
         {
             this.shoppingCart = newCart;
-        }
-
-        public bool BuyCart()
-        {
-            throw new NotImplementedException();
         }
 
         public void WithdrawMoney(int amount)
