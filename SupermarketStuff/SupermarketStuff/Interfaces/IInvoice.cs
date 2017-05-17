@@ -6,7 +6,6 @@ namespace SupermarketStuff.Interfaces
     {
         string ToString();
         double GetBill();
-        void SetBill();
         List<IItem> GetListOfItems();
         void AddItem(IItem item);
     }

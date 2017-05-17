@@ -19,12 +19,14 @@ namespace SupermarketStuff.Implementation.Default
         public DefaultInvoice(List<IItem> items)
         {
             this.items = items;
-            SetBill();
+            foreach(IItem item in items)
+                AddItem(item));
         }
 
         public void AddItem(IItem item)
         {
             items.Add(item);
+            bill += item.GetPrice();
         }
 
         public double GetBill()
@@ -35,16 +37,6 @@ namespace SupermarketStuff.Implementation.Default
         public List<IItem> GetListOfItems()
         {
             return items;
-        }
-
-        public void SetBill()
-        {
-            double result = 0;
-            foreach(IItem i in items)
-            {
-                result += i.GetPrice();
-            }
-            this.bill = result;
         }
     }
 }
