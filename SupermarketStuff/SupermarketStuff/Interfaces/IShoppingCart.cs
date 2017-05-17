@@ -1,8 +1,10 @@
-﻿namespace SupermarketStuff.Interfaces
+﻿using System.Collections.Generic;
+
+namespace SupermarketStuff.Interfaces
 {
     interface IShoppingCart
     {
-        List<IItem> getItemsInCart();
-        void FUCKING_KILL_DIS();
+        List<IItem> GetItemsInCart();
+        void DoDestruct();
     }
 }

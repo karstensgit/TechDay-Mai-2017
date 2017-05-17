@@ -2,7 +2,7 @@
 {
     interface ISupermarket
     {
-        double OrderItems(IItem item, int amount);
+        double OrderItems(IItem item, uint amount);
         void PrintSales();
     }
 }
