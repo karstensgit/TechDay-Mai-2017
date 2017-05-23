@@ -11,7 +11,7 @@ namespace SupermarketStuff.Implementation.Default
         private string name;
         private double price;
 
-        DefaultItem(string name, double price)
+        public DefaultItem(string name, double price)
         {
             this.name = name;
             this.price = price;
@@ -25,6 +25,23 @@ namespace SupermarketStuff.Implementation.Default
         public double GetPrice()
         {
             return price;
+        }
+
+        public override string ToString()
+        {
+            return name + price;
+        }
+
+        public override bool Equals(object obj)
+        {
+            IItem i = (IItem)obj;
+            if (this.GetName()==i.GetName())
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
         }
     }
 }

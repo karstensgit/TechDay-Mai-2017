@@ -20,6 +20,11 @@ namespace SupermarketStuff.Implementation.Default
             ItemsWithSupplyPrice.Add(item, supplyPrice);
         }
 
+        public double Buy(IItem item, double amount)
+        {
+            return GetPricePerItem(item) * amount;
+        }
+
         public double GetPricePerItem(IItem item)
         {
             if (ItemsWithSupplyPrice.ContainsKey(item))

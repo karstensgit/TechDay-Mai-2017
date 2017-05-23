@@ -8,7 +8,7 @@ namespace SupermarketStuff.Implementation.Default
         private double moneyInPocket;
         private IShoppingCart shoppingCart;
 
-        DefaultCustomer()
+        public DefaultCustomer()
         {
             this.moneyInPocket = 250;
             this.shoppingCart = new DefaultShoppingCart();

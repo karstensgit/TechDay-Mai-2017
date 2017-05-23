@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using SupermarketStuff.Interfaces;
+using System;
 
 namespace SupermarketStuff.Implementation.Default
 {
@@ -17,16 +18,32 @@ namespace SupermarketStuff.Implementation.Default
         public double OrderItems(IItem item, uint amount)
         {
             ISupplier supplierForItem = Marketplace.GetInstance().FindSupplier(item);
-            if (supplierForItem == null)
-                return 0.0;
+            //if (supplierForItem == null)
+              //  return 0.0;
+            if (_stock.ContainsKey(item))
+            {
+                _stock[item] += amount;
+            } else
+            {
+                _stock.Add(item, amount);
+            }
+            return supplierForItem.Buy(item, amount);
+        }
 
-            _stock[item] += amount;
-            return supplierForItem.Buy(item, amount));
+        public List<IItem> GetItems()
+        {       
+            List<IItem> keyList = new List<IItem>(_stock.Keys);
+            return keyList;
         }
 
         public void PrintSales()
         {
-            
+            double sales = 0;
+            foreach (IInvoice invoice in _invoices)
+            {
+                sales += invoice.GetBill();
+            }
+            Console.WriteLine("Total sales: " + sales);
         }
 
         public void Checkout(ICustomer toCheckoutCustomer)

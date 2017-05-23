@@ -20,7 +20,7 @@ namespace SupermarketStuff.Implementation.Default
         {
             this.items = items;
             foreach(IItem item in items)
-                AddItem(item));
+                AddItem(item);
         }
 
         public void AddItem(IItem item)
