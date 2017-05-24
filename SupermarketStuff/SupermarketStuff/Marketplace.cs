@@ -43,5 +43,15 @@ namespace SupermarketStuff
             return null;
         }
 
+        public override string ToString()
+        {
+            string result = "";
+            foreach (ISupplier s in _suppliers)
+            {
+                result = result + s.ToString();
+            }
+            return result;
+        }
+
     }
 }

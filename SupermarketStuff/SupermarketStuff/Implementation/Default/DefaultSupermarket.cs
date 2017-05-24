@@ -18,6 +18,8 @@ namespace SupermarketStuff.Implementation.Default
         public double OrderItems(IItem item, uint amount)
         {
             ISupplier supplierForItem = Marketplace.GetInstance().FindSupplier(item);
+            Console.WriteLine("Suppliers in Marketplace: \n" + Marketplace.GetInstance().ToString());
+            Console.WriteLine(supplierForItem.ToString());
             //if (supplierForItem == null)
               //  return 0.0;
             if (_stock.ContainsKey(item))

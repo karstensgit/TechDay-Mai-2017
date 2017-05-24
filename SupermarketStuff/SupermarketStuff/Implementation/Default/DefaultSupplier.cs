@@ -29,9 +29,7 @@ namespace SupermarketStuff.Implementation.Default
         {
             if (ItemsWithSupplyPrice.ContainsKey(item))
             {
-                double result = 0;
-                ItemsWithSupplyPrice.TryGetValue(item, out result);
-                return result;
+                return ItemsWithSupplyPrice[item];
             } else
             {
                 return 0;
@@ -40,7 +38,21 @@ namespace SupermarketStuff.Implementation.Default
 
         public bool Sells(IItem item)
         {
-            return ItemsWithSupplyPrice.ContainsKey(item);
+            foreach (IItem pivot in ItemsWithSupplyPrice.Keys)
+                if (pivot.Equals(item)) return true;
+            return false;
+
+        }
+
+        public override string ToString()
+        {
+            List<IItem> keyList = new List<IItem>(ItemsWithSupplyPrice.Keys);
+            string result = "Supplier: ";
+            foreach (IItem item in keyList)
+            {
+                result = result + item.ToString() + "; ";
+            }
+            return result;
         }
     }
 }

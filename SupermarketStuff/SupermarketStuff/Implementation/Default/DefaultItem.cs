@@ -35,7 +35,7 @@ namespace SupermarketStuff.Implementation.Default
         public override bool Equals(object obj)
         {
             IItem i = (IItem)obj;
-            if (this.GetName()==i.GetName())
+            if (this.GetName().Equals(i.GetName()))
             {
                 return true;
             } else
