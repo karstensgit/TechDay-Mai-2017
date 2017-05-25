@@ -37,5 +37,10 @@ namespace SupermarketStuff.Implementation.Default
         {
             return moneyInPocket;
         }
+
+        public void AddItemToCart(IItem item)
+        {
+            shoppingCart.AddItem(item);
+        }
     }
 }

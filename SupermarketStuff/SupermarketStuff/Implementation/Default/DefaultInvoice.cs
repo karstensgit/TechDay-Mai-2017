@@ -19,8 +19,6 @@ namespace SupermarketStuff.Implementation.Default
         public DefaultInvoice(List<IItem> items)
         {
             this.items = items;
-            foreach(IItem item in items)
-                AddItem(item);
         }
 
         public void AddItem(IItem item)

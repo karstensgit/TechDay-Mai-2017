@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SupermarketStuff.Interfaces;
 
 namespace SupermarketStuff.Implementation.Default
@@ -32,6 +33,11 @@ namespace SupermarketStuff.Implementation.Default
             //Delete everything
             foreach (IItem item in _itemsInCart)
                 _itemsInCart.Remove(item);
+        }
+
+        public void AddItem(IItem item)
+        {
+            _itemsInCart.Add(item);
         }
     }
 }

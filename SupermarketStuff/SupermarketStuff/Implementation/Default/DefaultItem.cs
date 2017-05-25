@@ -29,7 +29,7 @@ namespace SupermarketStuff.Implementation.Default
 
         public override string ToString()
         {
-            return name + price;
+            return name + " " + price;
         }
 
         public override bool Equals(object obj)

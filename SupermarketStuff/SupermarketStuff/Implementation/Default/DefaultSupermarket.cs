@@ -18,10 +18,8 @@ namespace SupermarketStuff.Implementation.Default
         public double OrderItems(IItem item, uint amount)
         {
             ISupplier supplierForItem = Marketplace.GetInstance().FindSupplier(item);
-            Console.WriteLine("Suppliers in Marketplace: \n" + Marketplace.GetInstance().ToString());
-            Console.WriteLine(supplierForItem.ToString());
-            //if (supplierForItem == null)
-              //  return 0.0;
+            if (supplierForItem == null)
+                return 0.0;
             if (_stock.ContainsKey(item))
             {
                 _stock[item] += amount;
@@ -48,7 +46,7 @@ namespace SupermarketStuff.Implementation.Default
             Console.WriteLine("Total sales: " + sales);
         }
 
-        public void Checkout(ICustomer toCheckoutCustomer)
+        public IInvoice Checkout(ICustomer toCheckoutCustomer)
         {
             var itemsInCustomersCart = toCheckoutCustomer.GetCart().GetItemsInCart();
             double checkoutTotal = 0.0;
@@ -64,6 +62,7 @@ namespace SupermarketStuff.Implementation.Default
             toCheckoutCustomer.SetCart(null);
             IInvoice generatedInvoice = new DefaultInvoice(itemsInCustomersCart);
             _invoices.Add(generatedInvoice);
+            return generatedInvoice;
         }
     }
 }

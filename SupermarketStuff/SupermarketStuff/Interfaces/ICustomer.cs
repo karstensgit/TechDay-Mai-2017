@@ -7,5 +7,6 @@
         //hebt Geld ab, falls ihr aan der Kasse nicht genug dabei habt
         void WithdrawMoney(int amount);
         double GetMoneyInPocket();
+        void AddItemToCart(IItem item);
     }
 }

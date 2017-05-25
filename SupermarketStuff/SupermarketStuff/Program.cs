@@ -10,7 +10,6 @@ namespace SupermarketStuff
 
         private static ISupermarket supermarket;
         private static ICustomer customer;
-        private static IItem banana = new DefaultItem("banana", 0.5);
 
 
         static void Main(string[] args)
@@ -26,9 +25,8 @@ namespace SupermarketStuff
             supermarket = new DefaultSupermarket();
             customer = new DefaultCustomer();
             AddDefaultSupplier();
-            ISupplier s = Marketplace.GetInstance().FindSupplier(banana);
-            supermarket.OrderItems(banana, 100);
-            //supermarket.OrderItems(new DefaultItem("Banana", 0.5), 100);
+            ISupplier s = Marketplace.GetInstance().FindSupplier(new DefaultItem("Banana", 0.5));
+            supermarket.OrderItems(new DefaultItem("Banana", 0.5), 100);
             supermarket.OrderItems(new DefaultItem("Apple", 0.3), 100);
             supermarket.OrderItems(new DefaultItem("Coconut", 3.5), 100);
         }
@@ -36,8 +34,7 @@ namespace SupermarketStuff
         private static void AddDefaultSupplier()
         {
             DefaultSupplier s = new DefaultSupplier();
-            //s.AddItem(new DefaultItem("Banana", 0.5), 0.3);
-            s.AddItem(banana, 0.3);
+            s.AddItem(new DefaultItem("Banana", 0.5), 0.3);
             s.AddItem(new DefaultItem("Apple", 0.3), 0.15);
             s.AddItem(new DefaultItem("Coconut", 3.5), 2);
             Marketplace.GetInstance().RegisterSupplier(s);
@@ -45,28 +42,59 @@ namespace SupermarketStuff
 
         private static void RunScenario()
         {
-            Console.WriteLine("###########################################");
+            Console.WriteLine(" ");
             Console.WriteLine("You are the customer, what do you want to do?");
-            Console.WriteLine("1. add an item to your shopping cart \n2. checkout your shopping cart");
-            try
-            {
-                int input = Int32.Parse(Console.ReadLine());
-                Console.WriteLine("These items are available: ");
-                for (int i = 1; i < GetAvailableItems().Count; i++)
-                {
-                    Console.WriteLine(i + GetAvailableItems()[i].ToString());
-                }
-            }
-            catch
-            {
-                Console.WriteLine("Invalid option, shutting down... \n...\n...\ndouche!");
-            }
+            Console.WriteLine("1. buy some stuff \n2. checkout your shopping cart");
+            ReadInput(Console.ReadLine());
 
         }
 
         private static List<IItem> GetAvailableItems()
         {
             return supermarket.GetItems();
+        }
+
+        private static void ReadInput(string input)
+        {
+            switch (input)
+            {
+                case "buy":
+                    ProceedBuyRequest();
+                    return;
+                case "checkout":
+                    ProceedCheckoutRequest();
+                    return;
+                default:
+                    Console.WriteLine("Hey douche, choose valid stuff!");
+                    ReadInput(Console.ReadLine());
+                    return;
+            }
+        }
+
+        private static void ProceedBuyRequest()
+        {
+            Console.WriteLine("These items are available: ");
+            for (int i = 0; i < GetAvailableItems().Count; i++)
+            {
+                Console.WriteLine(i+1 + " " + GetAvailableItems()[i].ToString());
+            }
+            try
+            {
+                int option = Int32.Parse(Console.ReadLine());
+                customer.AddItemToCart(GetAvailableItems()[option - 1]);
+                Console.WriteLine("Added {0} to your cart", GetAvailableItems()[option - 1]);
+                RunScenario();
+            } catch
+            {
+                Console.WriteLine("Hey douche, choose valid stuff!");
+                RunScenario();
+            }
+        }
+
+        private static void ProceedCheckoutRequest()
+        {
+            supermarket.Checkout(customer);
+            Console.WriteLine("Successfully checked out, good bye");
         }
     }
 }
